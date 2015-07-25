@@ -24,20 +24,8 @@
       $this->soapClient->__setSoapHeaders($soapHeader);
     }
 
-    function StationBoard($method,$numRows,$crs,$filterCrs,$filterType,$timeOffset,$timeWindow)
+    private function call($method,$params)
     {
-      $params["numRows"] = $numRows;
-
-      $params["crs"] = $crs;
-
-      if ($filterCrs) $params["filterCrs"] = $filterCrs;
-
-      if ($filterType) $params["filterType"] = $filterType;
-
-      if ($timeOffset) $params["timeOffset"] = $timeOffset;
-
-      if ($timeWindow) $params["timeWindow"] = $timeWindow;
-
       try
       {
         $response = $this->soapClient->$method($params);
@@ -59,9 +47,44 @@
       return (isset($response)?$response:FALSE);
     }
 
+    function StationBoard($method,$numRows,$crs,$filterCrs,$filterType,$timeOffset,$timeWindow)
+    {
+      $params["numRows"] = $numRows;
+
+      $params["crs"] = $crs;
+
+      if ($filterCrs) $params["filterCrs"] = $filterCrs;
+
+      if ($filterType) $params["filterType"] = $filterType;
+
+      if ($timeOffset) $params["timeOffset"] = $timeOffset;
+
+      if ($timeWindow) $params["timeWindow"] = $timeWindow;
+
+      return $this->call($method,$params);
+    }
+
+    function DeparturesBoard($method,$crs,$filterList,$timeOffset,$timeWindow)
+    {
+      $params["crs"] = $crs;
+
+      $params["filterList"] = $filterList;
+
+      if ($timeOffset) $params["timeOffset"] = $timeOffset;
+
+      if ($timeWindow) $params["timeWindow"] = $timeWindow;
+
+      return $this->call($method,$params);
+    }
+
     function GetDepartureBoard($numRows,$crs,$filterCrs="",$filterType="",$timeOffset="",$timeWindow="")
     {
       return $this->StationBoard("GetDepartureBoard",$numRows,$crs,$filterCrs,$filterType,$timeOffset,$timeWindow);
+    }
+
+    function GetDepBoardWithDetails($numRows,$crs,$filterCrs="",$filterType="",$timeOffset="",$timeWindow="")
+    {
+      return $this->StationBoard("GetDepBoardWithDetails",$numRows,$crs,$filterCrs,$filterType,$timeOffset,$timeWindow);
     }
 
     function GetArrivalBoard($numRows,$crs,$filterCrs="",$filterType="",$timeOffset="",$timeWindow="")
@@ -69,16 +92,46 @@
       return $this->StationBoard("GetArrivalBoard",$numRows,$crs,$filterCrs,$filterType,$timeOffset,$timeWindow);
     }
 
+    function GetArrBoardWithDetails($numRows,$crs,$filterCrs="",$filterType="",$timeOffset="",$timeWindow="")
+    {
+      return $this->StationBoard("GetArrBoardWithDetails",$numRows,$crs,$filterCrs,$filterType,$timeOffset,$timeWindow);
+    }
+
     function GetArrivalDepartureBoard($numRows,$crs,$filterCrs="",$filterType="",$timeOffset="",$timeWindow="")
     {
       return $this->StationBoard("GetArrivalDepartureBoard",$numRows,$crs,$filterCrs,$filterType,$timeOffset,$timeWindow);
+    }
+
+    function GetArrDepBoardWithDetails($numRows,$crs,$filterCrs="",$filterType="",$timeOffset="",$timeWindow="")
+    {
+      return $this->StationBoard("GetArrDepBoardWithDetails",$numRows,$crs,$filterCrs,$filterType,$timeOffset,$timeWindow);
+    }
+
+    function GetNextDepartures($crs,$filterList,$timeOffset="",$timeWindow="")
+    {
+      return $this->DeparturesBoard("GetNextDepartures",$crs,$filterList,$timeOffset,$timeWindow);
+    }
+
+    function GetNextDeparturesWithDetails($crs,$filterList,$timeOffset="",$timeWindow="")
+    {
+      return $this->DeparturesBoard("GetNextDeparturesWithDetails",$crs,$filterList,$timeOffset,$timeWindow);
+    }
+
+    function GetFastestDepartures($crs,$filterList,$timeOffset="",$timeWindow="")
+    {
+      return $this->DeparturesBoard("GetFastestDepartures",$crs,$filterList,$timeOffset,$timeWindow);
+    }
+
+    function GetFastestDeparturesWithDetails($crs,$filterList,$timeOffset="",$timeWindow="")
+    {
+      return $this->DeparturesBoard("GetFastestDeparturesWithDetails",$crs,$filterList,$timeOffset,$timeWindow);
     }
 
     function GetServiceDetails($serviceID)
     {
       $params["serviceID"] = $serviceID;
 
-      return $this->soapClient->GetServiceDetails($params);
+      return $this->call("GetServiceDetails",$params);
     }
   }
 ?>
