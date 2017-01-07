@@ -15,7 +15,7 @@
 
       $soapOptions = array("trace"=>$this->trace,"compression"=>SOAP_COMPRESSION_ACCEPT|SOAP_COMPRESSION_GZIP);
 
-      $this->soapClient = new SoapClient("http://lite.realtime.nationalrail.co.uk/OpenLDBWS/wsdl.aspx",$soapOptions);
+      $this->soapClient = new SoapClient("https://lite.realtime.nationalrail.co.uk/OpenLDBWS/wsdl.aspx?ver=2016-02-16",$soapOptions);
 
       $soapVar = new SoapVar(array("ns2:TokenValue"=>$this->accessToken),SOAP_ENC_OBJECT);
 
