@@ -58,7 +58,7 @@ Request the next 10 departures from London Paddington (PAD), display stdClass re
 
 Live demo:
 
-http://www.railalefan.co.uk/rail/phpOpenLDBWS/example1.php
+https://live-departures.info/rail/phpOpenLDBWS/example1.php
 
 Example 2
 =========
@@ -75,4 +75,4 @@ Request the next fastest departures from London Paddington (PAD), to Reading (RD
 
 Live demo:
 
-http://www.railalefan.co.uk/rail/phpOpenLDBWS/example2.php
+https://live-departures.info/rail/phpOpenLDBWS/example2.php
