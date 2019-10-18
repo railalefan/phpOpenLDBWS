@@ -60,6 +60,8 @@ Live demo:
 
 https://edge-irc.live-departures.info/~railalefan/phpOpenLDBWS/example1.php
 
+(response cached for 60s)
+
 Example 2
 =========
 
@@ -76,3 +78,5 @@ Request the next fastest departures from London Paddington (PAD), to Reading (RD
 Live demo:
 
 https://edge-irc.live-departures.info/~railalefan/phpOpenLDBWS/example2.php
+
+(response cached for 60s)
