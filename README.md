@@ -1,7 +1,7 @@
 phpOpenLDBWS
 ============
 
-Very simple PHP object encapsulation of the National Rail Enquiries live departure boards SOAP web service (OpenLDBWS) as documented at http://www.livedepartureboards.co.uk/ldbws/
+Very simple PHP object encapsulation of the National Rail Enquiries live departure boards SOAP web service (OpenLDBWS) as documented at http://lite.realtime.nationalrail.co.uk/OpenLDBSVWS/
 
 Usage
 =====
