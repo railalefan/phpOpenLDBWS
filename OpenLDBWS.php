@@ -13,7 +13,9 @@
 
       $this->trace = $trace;
 
-      $soapOptions = array("trace"=>$this->trace,"compression"=>SOAP_COMPRESSION_ACCEPT|SOAP_COMPRESSION_GZIP);
+      $soapOptions = array("trace"=>$this->trace,"soap_version"=>SOAP_1_2,"features"=>SOAP_SINGLE_ELEMENT_ARRAYS);
+
+      if (extension_loaded("zlib")) $soapOptions["compression"] = SOAP_COMPRESSION_ACCEPT|SOAP_COMPRESSION_GZIP;
 
       $this->soapClient = new SoapClient("http://lite.realtime.nationalrail.co.uk/OpenLDBWS/wsdl.aspx",$soapOptions);
 
